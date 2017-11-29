@@ -1,6 +1,11 @@
 package ie.lyit.hotel;
 
-public class Customer extends Person{// INHERITANCE - Customer IS-A Person
+import java.io.Serializable;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+
+
+public class Customer extends Person implements Serializable{// INHERITANCE - Customer IS-A Person
 	// Customer has name, address, & phoneNumber from Person
 	private String emailAddress;    // AND emailAddress
 	private int number;			    // AND number
@@ -41,7 +46,6 @@ public class Customer extends Person{// INHERITANCE - Customer IS-A Person
 	// equals() method
 	// ==> Called when comparing an object with another object, 
 	//     e.g. - if(c1.equals(c2))				
-	// ==> Probably sufficient to compare customer numbers as they're unique
 	@Override
 	public boolean equals(Object obj){
 		Customer cObject;
@@ -64,5 +68,43 @@ public class Customer extends Person{// INHERITANCE - Customer IS-A Person
 	// so don't provide a setNumber() method
 	public int getNumber(){
 		return number;
-	}	
+	}
+	
+	// GUI to handle the entering of a new customer
+	// when the read method is called.
+	   public void read(){
+		   	  // JTextFields to save details entered.
+		      JTextField txtCusNo = new JTextField();
+		      txtCusNo.setText("" + this.getNumber());
+		      JTextField txtTitle = new JTextField();
+		      JTextField txtFirstName = new JTextField();
+		      txtFirstName.requestFocus();
+		      JTextField txtSurname = new JTextField();
+		      txtSurname.requestFocus();
+		      JTextField txtAddress = new JTextField();
+		      JTextField txtEmailAddress = new JTextField();
+		      JTextField txtPhoneNumber = new JTextField();
+
+		      // The text to be displayed beside each text box.
+		      Object[] message = {
+			      "Customer Number: ", txtCusNo,
+			      "Title: ", txtTitle,
+		          "First Name:", txtFirstName,
+		          "Surname: ", txtSurname,
+		          "Email Address: ", txtEmailAddress,
+		          "Phone Number: ", txtPhoneNumber,
+
+		      };
+		      // handling of text options entered.
+		      int option = JOptionPane.showConfirmDialog(null, message, "Enter customer details", JOptionPane.OK_CANCEL_OPTION);
+		      Name txtName = new Name(txtTitle.getText(), txtFirstName.getText(), txtSurname.getText());
+
+		      if (option == JOptionPane.OK_OPTION){
+		    	  this.name = txtName;
+		    	  this.address =txtAddress.getText();
+		          this.emailAddress = txtEmailAddress.getText();
+		          this.phoneNumber = txtPhoneNumber.getText();
+
+		      }   
+			}
 }

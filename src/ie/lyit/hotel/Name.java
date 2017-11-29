@@ -5,10 +5,14 @@
  * Date: 18/09/2017
  * @author Maria Boyle
  * @version 1.0
+ * 
+ * 
+ * edited by Robert Shally
 **/
 package ie.lyit.hotel;
+import java.io.Serializable;
 
-public class Name {
+public class Name implements Serializable{
 	// Instance Variables
 	private String title;
 	private String firstName;	
